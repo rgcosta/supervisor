@@ -16,7 +16,7 @@ public class UserController {
     private AssociationRepository associationRepository;
 
     @GetMapping("/doAll")
-    public List<User> doAll() {
+    public List<UserSupervisorAssociation> doAll() {
         User user = new User();
         user.setFirstName("Romulo");
         user.setLastName("Costa");
@@ -62,14 +62,20 @@ public class UserController {
         association3.setSupervisor(user);
         association3.setSubCarrier(subCarrier);
 
+        associationRepository.save(association3);
+
         //Try to solve association3
         //Suggestion, elimitate Supervisor Class and work only with User and Association classes. Inside User, there will be
         //a list of supervisor like List<User> supervisors. Try it!
 
         //Another thing to solve: bi-directional return in json.
 
-        associationRepository.save(association3);
 
+        return associationRepository.findAll();
+    }
+
+    @GetMapping("/getAllUsers")
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 }

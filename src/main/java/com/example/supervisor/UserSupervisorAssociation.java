@@ -18,7 +18,11 @@ public class UserSupervisorAssociation {
     @ManyToOne(cascade = CascadeType.ALL)
     private User user;
     @ManyToOne(cascade = CascadeType.ALL)
-    private User supervisor;
+    private Supervisor supervisor;
+
+    public UserSupervisorAssociation() {
+
+    }
 
     public Long getId() {
         return id;
@@ -50,7 +54,7 @@ public class UserSupervisorAssociation {
 
     public void setUser(User user) {
         this.user = user;
-//        user.addUserSupervisorAssociations(this);
+        user.addUserSupervisorAssociations(this);
     }
 
     public User getSupervisor() {
@@ -58,8 +62,7 @@ public class UserSupervisorAssociation {
     }
 
     public void setSupervisor(User supervisor) {
-        supervisor.setType("Supervisor");
-        this.supervisor = supervisor;
-//        supervisor.addUserSupervisorAssociations(this);
+        this.supervisor = (Supervisor) supervisor;
+        supervisor.addUserSupervisorAssociations(this);
     }
 }

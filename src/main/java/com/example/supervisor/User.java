@@ -1,17 +1,15 @@
 package com.example.supervisor;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 public class User {
 
     @Id
@@ -21,26 +19,22 @@ public class User {
     private String firstName;
     private String lastName;
     private String age;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<UserSupervisorAssociation> userSupervisorAssociations = new ArrayList<>();
-    @Column(name = "dtype", insertable = false, updatable = false)
-    private String type;
+    @OneToMany(mappedBy = "user")
+    private List<UserSupervisorAssociation> userSupervisorAssociations;
 
-    public void addUserSupervisorAssociations(UserSupervisorAssociation userSupervisorAssociation) {
+    public User() {
+        this.userSupervisorAssociations = new ArrayList<>();
+    }
+
+    public boolean addUserSupervisorAssociations(UserSupervisorAssociation userSupervisorAssociation) {
         this.userSupervisorAssociations.add(userSupervisorAssociation);
+//        userSupervisorAssociation.setUser(this);
+        return true;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public List<UserSupervisorAssociation> getUserSupervisorAssociations() {
-        return userSupervisorAssociations;
-    }
+//    public List<UserSupervisorAssociation> getUserSupervisorAssociations() {
+//        return Collections.unmodifiableList(this.userSupervisorAssociations);
+//    }
 
     public Long getId() {
         return id;

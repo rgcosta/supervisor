@@ -15,6 +15,10 @@ public class SubCarrier {
     private String name;
     private String code;
 
+    public SubCarrier() {
+
+    }
+
     public Long getId() {
         return id;
     }
