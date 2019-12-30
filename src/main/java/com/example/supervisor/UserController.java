@@ -27,11 +27,11 @@ public class UserController {
         user2.setLastName("Jose");
         user2.setAge("20");
 
-        Supervisor supervisor = new Supervisor();
+        User supervisor = new User();
         supervisor.setFirstName("Andrew");
         supervisor.setLastName("Parks");
 
-        Supervisor supervisor2 = new Supervisor();
+        User supervisor2 = new User();
         supervisor2.setFirstName("John");
         supervisor2.setLastName("Last");
         supervisor2.setAge("50");
@@ -63,6 +63,14 @@ public class UserController {
         association3.setSubCarrier(subCarrier);
 
         associationRepository.save(association3);
+
+        UserSupervisorAssociation association4 = new UserSupervisorAssociation();
+        association4.setDate(new Date());
+        association4.setUser(supervisor);
+        association4.setSupervisor(user);
+        association4.setSubCarrier(subCarrier);
+
+        associationRepository.save(association4);
 
         //Try to solve association3
         //Suggestion, elimitate Supervisor Class and work only with User and Association classes. Inside User, there will be

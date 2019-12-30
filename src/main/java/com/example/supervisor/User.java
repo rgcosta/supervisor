@@ -20,14 +20,14 @@ public class User {
     private String lastName;
     private String age;
     @OneToMany(mappedBy = "user")
-    private List<UserSupervisorAssociation> userSupervisorAssociations;
+    private List<UserSupervisorAssociation> supervisors;
 
     public User() {
-        this.userSupervisorAssociations = new ArrayList<>();
+        this.supervisors = new ArrayList<>();
     }
 
     public boolean addUserSupervisorAssociations(UserSupervisorAssociation userSupervisorAssociation) {
-        this.userSupervisorAssociations.add(userSupervisorAssociation);
+        this.supervisors.add(userSupervisorAssociation);
 //        userSupervisorAssociation.setUser(this);
         return true;
     }

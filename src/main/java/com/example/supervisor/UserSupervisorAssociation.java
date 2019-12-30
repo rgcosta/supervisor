@@ -17,8 +17,8 @@ public class UserSupervisorAssociation {
     private SubCarrier subCarrier;
     @ManyToOne(cascade = CascadeType.ALL)
     private User user;
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Supervisor supervisor;
+    @OneToOne(cascade = CascadeType.ALL)
+    private User supervisor;
 
     public UserSupervisorAssociation() {
 
@@ -62,7 +62,6 @@ public class UserSupervisorAssociation {
     }
 
     public void setSupervisor(User supervisor) {
-        this.supervisor = (Supervisor) supervisor;
-        supervisor.addUserSupervisorAssociations(this);
+        this.supervisor = supervisor;
     }
 }
